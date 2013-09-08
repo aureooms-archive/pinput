@@ -15,7 +15,7 @@ namespace pinput{
 					if(p[1] == '-' || p.size() == 2){
 
 						if(optional.count(p) > 0){
-							options.emplace(p);
+							options.emplace(p, std::vector<std::string>());
 							optionalParameterKey = p;
 							isOptionalParameter = true;
 						}
@@ -25,7 +25,7 @@ namespace pinput{
 					}
 					else{
 						for(size_t i = 1; i < p.size(); ++i){
-							options.insert({'-', p[i]});
+							flags.insert(std::string({'-', p[i]}));
 						}
 					}
 				}
