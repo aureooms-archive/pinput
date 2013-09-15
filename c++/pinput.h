@@ -7,7 +7,7 @@ namespace pinput{
 		std::string optionalParameterKey;
 		bool isOptionalParameter = false;
 
-		for(int n = 1; n < argc; n++){
+		for(int n = 1; n < argc; n++){//++n
 			std::string p = argv[n];
 			if (p[0] == '-'){
 				isOptionalParameter = false;
@@ -15,7 +15,7 @@ namespace pinput{
 					if(p[1] == '-' || p.size() == 2){
 
 						if(optional.count(p) > 0){
-							options.emplace(p, std::vector<std::string>());
+							options.emplace(p, std::vector<std::string>());//0
 							optionalParameterKey = p;
 							isOptionalParameter = true;
 						}
