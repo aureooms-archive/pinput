@@ -9,7 +9,7 @@ import java.util.HashSet;
 class Test {
 	public static void main (String[] args){
 		List<String> params = new ArrayList<String>();
-		Map<String,ArrayList<String>> options = new HashMap<String,ArrayList<String>>();
+		Map<String,List<String>> options = new HashMap<String,List<String>>();
 		Set<String> flags = new HashSet<String>();
 		Set<String> flagSet = new HashSet<String>();
 		flagSet.add("-h");

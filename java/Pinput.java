@@ -2,10 +2,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import java.util.ArrayList;
+
+
 class Pinput {
-	public static void parse (String[] args, List<String> params, Map<String,? extends List<String> > options, Set<String> flags, Set<String> flagSet){
+	public static void parse (String[] args, List<String> params, Map<String, List<String>> options, Set<String> flags, Set<String> flagSet){
 		
-		String optionalParameterKey;
+		String optionalParameterKey = "";
 		Boolean isOptionalParameter = false;
 
 		for(int n = 0; n < args.length; ++n){
@@ -19,7 +22,7 @@ class Pinput {
 							flags.add(p);
 						}
 						else{
-							//options.put(p, ?.newInstance());
+							options.put(p, new ArrayList());
 							optionalParameterKey = p;
 							isOptionalParameter = true;
 						}
@@ -32,7 +35,7 @@ class Pinput {
 				}
 			}
 			else if(isOptionalParameter){
-				//options.get(optionalParameterKey).add(p);
+				options.get(optionalParameterKey).add(p);
 			}
 			else{
 				params.add(p);
