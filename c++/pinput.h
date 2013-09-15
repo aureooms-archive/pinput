@@ -1,4 +1,6 @@
 #include <string>
+#include <utility>
+#include <tuple>
 
 namespace pinput{
 	template<typename P, typename O, typename F, typename T>
@@ -15,7 +17,7 @@ namespace pinput{
 					if(p[1] == '-' || p.size() == 2){
 
 						if(optional.count(p) > 0){
-							options.emplace(p, 0);
+							options.emplace(std::piecewise_construct, std::forward_as_tuple(p), std::forward_as_tuple());
 							optionalParameterKey = p;
 							isOptionalParameter = true;
 						}
