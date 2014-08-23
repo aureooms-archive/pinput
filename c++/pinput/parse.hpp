@@ -38,24 +38,22 @@ void parse(int argc, char* argv[], P& params, O& options, F& flags, const T& opt
 
 	for(int n = 1; n < argc; ++n){
 		std::string p = argv[n];
-		if (p[0] == '-' && !std::isdigit(p[1])){
+		if (p.size() > 1 && p[0] == '-' && !std::isdigit(p[1])){
 			isOptionalParameter = false;
-			if(p.size() > 1){
-				if(p[1] == '-' || p.size() == 2){
+			if(p[1] == '-' || p.size() == 2){
 
-					if(option_set.count(p) > 0){
-						options.insert(typename O::value_type(p, {}));
-						optionalParameterKey = p;
-						isOptionalParameter = true;
-					}
-					else if(flag_set.count(p) > 0){
-						flags.insert(p);
-					}
+				if(option_set.count(p) > 0){
+					options.insert(typename O::value_type(p, {}));
+					optionalParameterKey = p;
+					isOptionalParameter = true;
 				}
-				else{
-					for(size_t i = 1; i < p.size(); ++i){
-						flags.insert(std::string({'-', p[i]}));
-					}
+				else if(flag_set.count(p) > 0){
+					flags.insert(p);
+				}
+			}
+			else{
+				for(size_t i = 1; i < p.size(); ++i){
+					flags.insert(std::string({'-', p[i]}));
 				}
 			}
 		}
